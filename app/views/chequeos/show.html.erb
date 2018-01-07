@@ -1,0 +1,38 @@
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Diferencia de peso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr scope="row">
+        <th scope="col"><%= @user.full_name %></th>
+        <th style="width: 80%" scope="col"><%= @user.diferencia_de_peso %></th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h1>Dias</h1>
+<div class="row">
+  <% @chequeos.where(fecha: dia.fecha).each do |chequeo| %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Peso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr scope="row"  >
+        <th scope="col"><%= chequeo.to_date.strftime("%d/%m/%Y") %></th>
+        <th scope="col"><%= chequeo.user.full_name %></th>
+        <th style="width: 80%" scope="col"><%= chequeo.peso %></th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>

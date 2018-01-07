@@ -1,0 +1,48 @@
+<%= render 'chequeos/form' %>
+
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Diferencia de peso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr scope="row" class="<%= user.diferencia_de_peso > 0 ? "danger" : user == current_user ? "info" : "" %> ">
+        <th scope="col"><%= user.full_name %></th>
+        <th style="width: 80%" scope="col"><%= user.diferencia_de_peso %></th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <% @chequeosdays.each do |dia| %>
+  <h1><%= dia.fecha.to_date.strftime("%d/%m/%Y") %></h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Peso</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @chequeos.where(fecha: dia.fecha).order(:peso).each do |chequeo| %>
+      <tr scope="row" class="<%= chequeo.user == current_user ? "info" : "" %>">
+        <th style="width: 20%" scope="col"><%= chequeo.user.full_name %></th>
+        <th style="width: 70%" scope="col"><%= chequeo.peso %></th>
+        <th style="width: 10%" scope="col">
+          <% if chequeo.user == current_user %>
+          <input href="#" id="<%= chequeo.id %>" type="button" class="btn btn-sm btn-danger" value="Borrar">
+          <% end %>
+        </th>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>

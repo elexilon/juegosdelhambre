@@ -67,3 +67,7 @@ gem 'devise', '~> 4.2'
 gem 'carrierwave', '0.11.2'
 
 gem 'cloudinary', '1.2.3'
+
+gem 'momentjs-rails', '>= 2.9.0'
+
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
