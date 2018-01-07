@@ -1,0 +1,2 @@
+class ChequeosController < ApplicationController
+end
